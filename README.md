@@ -346,6 +346,6 @@ This project is created as part of the 3W Solutions Full Stack Internship Assign
 
 ---
 
-**Developer:** [Your Name]  
-**Email:** hr@triplewsols.com  
+**Developer:**   HEMANTH ARTHAM 
+**Email:** arthamhemanth001@gmail.com  
 **Submission Date:** February 2026
