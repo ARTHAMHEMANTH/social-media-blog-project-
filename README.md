@@ -205,6 +205,45 @@ The application's design is inspired by the TaskPlanet social page, featuring:
 
 ## 🌐 Deployment
 
+### Quick Deploy to Vercel
+
+This application is configured for easy deployment to Vercel for both frontend and backend.
+
+**📖 Complete Deployment Guide:** See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed step-by-step instructions.
+
+### Quick Links
+
+**Live Demo URLs** (Add your deployed URLs here after deployment):
+- **Frontend:** `https://your-app-name.vercel.app`
+- **Backend API:** `https://your-backend-name.vercel.app`
+
+### Deployment Steps Summary
+
+1. **MongoDB Atlas Setup**
+   - Create free cluster
+   - Get connection string
+   - Add to backend environment variables
+
+2. **Deploy Backend**
+   ```bash
+   # Backend will auto-deploy from GitHub via Vercel
+   # Set environment variables in Vercel dashboard:
+   # - MONGODB_URI
+   # - JWT_SECRET
+   # - NODE_ENV=production
+   ```
+
+3. **Deploy Frontend**
+   ```bash
+   # Frontend will auto-deploy from GitHub via Vercel
+   # Set environment variable in Vercel dashboard:
+   # - REACT_APP_API_URL=https://your-backend-url.vercel.app/api
+   ```
+
+For detailed instructions, see **[DEPLOYMENT.md](DEPLOYMENT.md)**
+
+---
+
 ### MongoDB Atlas Setup
 1. Create a free account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 2. Create a new cluster
