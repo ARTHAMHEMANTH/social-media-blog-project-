@@ -41,7 +41,6 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
     console.error('❌ MONGODB_URI is not defined in environment variables');
-    // In Vercel, we can't crash the process, but we should log clearly
 }
 
 // Better connection logic for serverless
@@ -58,8 +57,6 @@ const connectDB = async () => {
         console.log('✅ Connected to MongoDB');
     } catch (error) {
         console.error('❌ MongoDB connection error:', error);
-        // Do NOT exit process in serverless environment
-        // process.exit(1); 
     }
 };
 
