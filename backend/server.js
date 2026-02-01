@@ -36,29 +36,38 @@ app.use((err, req, res, next) => {
 });
 
 // MongoDB Connection
+// MongoDB Connection
 const PORT = process.env.PORT || 5000;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/social-post-app';
+const MONGODB_URI = process.env.MONGODB_URI;
 
-mongoose.connect(MONGODB_URI)
-    .then(() => {
+// Better connection logic for serverless
+let isConnected = false;
+
+const connectDB = async () => {
+    if (isConnected) {
+        return;
+    }
+
+    try {
+        const db = await mongoose.connect(MONGODB_URI);
+        isConnected = db.connections[0].readyState;
         console.log('✅ Connected to MongoDB');
-        // Only start server if not running in Vercel (Vercel handles this via export)
-        if (process.env.NODE_ENV !== 'production') {
-            app.listen(PORT, () => {
-                console.log(`🚀 Server running on port ${PORT}`);
-                console.log(`📍 API URL: http://localhost:${PORT}`);
-            });
-        }
-    })
-    .catch((error) => {
+    } catch (error) {
         console.error('❌ MongoDB connection error:', error);
-        process.exit(1);
-    });
+        // Do NOT exit process in serverless environment
+        // process.exit(1); 
+    }
+};
 
-// Handle unhandled promise rejections
-process.on('unhandledRejection', (err) => {
-    console.error('Unhandled Rejection:', err);
-    process.exit(1);
-});
+// Initialize DB connection for serverless
+connectDB();
+
+// Only listen if not in serverless environment (local dev)
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`🚀 Server running on port ${PORT}`);
+        console.log(`📍 API URL: http://localhost:${PORT}`);
+    });
+}
 
 module.exports = app;
