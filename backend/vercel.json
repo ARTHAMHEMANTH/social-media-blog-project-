@@ -1,13 +1,19 @@
 {
     "version": 2,
-    "rewrites": [
+    "builds": [
         {
-            "source": "/uploads/(.*)",
-            "destination": "/uploads/$1"
+            "src": "server.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/uploads/(.*)",
+            "dest": "/uploads/$1"
         },
         {
-            "source": "/(.*)",
-            "destination": "/server.js"
+            "src": "/(.*)",
+            "dest": "/server.js"
         }
     ]
 }

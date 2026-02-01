@@ -42,10 +42,13 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/social
 mongoose.connect(MONGODB_URI)
     .then(() => {
         console.log('✅ Connected to MongoDB');
-        app.listen(PORT, () => {
-            console.log(`🚀 Server running on port ${PORT}`);
-            console.log(`📍 API URL: http://localhost:${PORT}`);
-        });
+        // Only start server if not running in Vercel (Vercel handles this via export)
+        if (process.env.NODE_ENV !== 'production') {
+            app.listen(PORT, () => {
+                console.log(`🚀 Server running on port ${PORT}`);
+                console.log(`📍 API URL: http://localhost:${PORT}`);
+            });
+        }
     })
     .catch((error) => {
         console.error('❌ MongoDB connection error:', error);
