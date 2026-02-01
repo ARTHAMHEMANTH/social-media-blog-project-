@@ -1,0 +1,14 @@
+{
+    "name": "social-post-app-unified",
+    "version": "1.0.0",
+    "description": "Social Post App Unified Deployment",
+    "private": true,
+    "engines": {
+        "node": ">=16"
+    },
+    "scripts": {
+        "install-backend": "cd backend && npm install",
+        "install-frontend": "cd frontend && npm install",
+        "build": "echo 'No root build script needed for Vercel unified deploy'"
+    }
+}
